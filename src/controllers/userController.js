@@ -34,9 +34,3 @@ export const registerUser = async (newUser)=>{
         console.log(error)
     }
   }
-  
-  export const getUser = async(query)=>{
-    const res = await fetch("http://localhost:3000/api/users/"+query.id)
-    const data = await res.json()
-    setNewUser(data)   
-  }

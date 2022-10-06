@@ -2,7 +2,7 @@ import React from "react"
 import { Button, Form, Grid } from "semantic-ui-react"
 import { useState,useEffect } from "react"
 import { Router, useRouter } from "next/router"
-import {registerUser,getUser,updateUser} from 'controllers/userController'
+import {registerUser,updateUser} from 'controllers/userController'
 
 
 export default function UserRegisterForm(){
@@ -17,6 +17,12 @@ export default function UserRegisterForm(){
         "tipo": 1
     })
 
+    const getUser = async(query)=>{
+        const res = await fetch("http://localhost:3000/api/users/"+query.id)
+        const data = await res.json()
+        setNewUser(data)   
+    }
+
     useEffect(()=>{
         if(query.id) getUser(query)
     },[])
@@ -29,7 +35,7 @@ export default function UserRegisterForm(){
         if (!newUser.apellido) errors.apellido = "Se debe ingresar un apellido"
         if (!newUser.email) errors.email = "Se debe ingresar un email"
         if (!newUser.fechaNacimiento) errors.fechaNacimiento = "Se debe ingresar una fecha de nacimiento"
-        if (!newUser.clave) errors.clave = "Se debe ingresar un clave"
+        if (!newUser.clave) errors.clave = "Se debe ingresar un contraseñia"
         if (!newUser.tipo) errors.tipo = "Se debe seleccionar un tipo"
         return errors
     }
