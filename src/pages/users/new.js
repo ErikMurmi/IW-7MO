@@ -2,7 +2,7 @@ import React from "react"
 import { Button, Form, Grid } from "semantic-ui-react"
 import { useState,useEffect } from "react"
 import { Router, useRouter } from "next/router"
-import {registerUser,updateUser} from 'controllers/userController'
+import {registerUser,updateUser,getUser} from 'controllers/userController'
 
 
 export default function UserRegisterForm(){
@@ -17,14 +17,15 @@ export default function UserRegisterForm(){
         "tipo": 1
     })
 
-    const getUser = async(query)=>{
-        const res = await fetch("http://localhost:3000/api/users/"+query.id)
-        const data = await res.json()
-        setNewUser(data)   
+    
+
+    const checkUserReceived = async () =>{
+        setNewUser(await getUser(query))
+        //console.log(await getUser(query))
     }
 
     useEffect(()=>{
-        if(query.id) getUser(query)
+        if(query.id) checkUserReceived(query)
     },[])
 
     const [errors,setErrors] = useState({})

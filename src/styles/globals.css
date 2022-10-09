@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+input{
+  margin: 10px;
+}
+
 * {
   box-sizing: border-box;
 }

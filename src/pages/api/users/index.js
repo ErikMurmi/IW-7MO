@@ -7,7 +7,7 @@ dbConnect()
 
 export default async function handler(req,res){
   const {method,body} = req
-  switch(req.method){
+  switch(method){
     case "GET":
       try{
         const users = await User.find()
