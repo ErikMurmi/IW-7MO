@@ -14,15 +14,18 @@ export default async(req,res) =>
             try{
                 if (email.length > 0 && password.length > 0) {
                     data = {
-                        email: email,
-                        password: password
+                        email: email
                     };
                 }
                 const user = await User.findOne(data)
                 if(!user) return res.status(400).json({msg: "User not found"})
-                return res.status(200).json(user)
+                if(user.clave === password) 
+                    return res.status(200).json(user)
+                else 
+                    return res.status(401).json({msg:"Incorrect password"})
+                    
             }catch(error){
-                return res.status(500).json({msg:error.message})
+                return res.status(500).json({msg:"User does not exits"})
             }  
         default:
             return res.status(400).json({msg:"This method is not available"})

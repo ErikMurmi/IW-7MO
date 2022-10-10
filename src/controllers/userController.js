@@ -55,6 +55,8 @@ export const findUserByCredentials = async(credentials) =>{
         return data
     }catch(error){
         console.log(error)
+        console.log('No se econtro el usuario')
+        return null
     }
     
 }
