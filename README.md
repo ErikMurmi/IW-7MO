@@ -1,3 +1,7 @@
+# CRUD Y LOGIN MVC INGENIERÍA WEB
+
+The repository contains a project created with the NEXT framework. It is a CRUD of users registered in a MongoDB database, so that with the project users can be created, read, updated and deleted. Additionally, a login is implemented so that users must be authenticated to be able to use the application otherwise they can only register as new user.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
