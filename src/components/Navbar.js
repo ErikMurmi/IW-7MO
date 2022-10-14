@@ -16,7 +16,6 @@ export const Navbar =()=>{
                 { session===null ? null:<Menu.Item position="left" >
                     <Link href='/users' style={{fontStyle:"italic",fontWeight:"bold"}}>{'Usuarios'}</Link>
                     </Menu.Item>}
-                
                 <>
                 <Menu.Item position="right">
                 <Button color="twitter" onClick={()=>router.push("/users/new")}

@@ -17,9 +17,6 @@ export default async function handler(req,res){
   switch(method){
     case "GET":
       try{
-        if(session === null){
-          return res.status(401).json({error: "You must be signed in to view the protected content on this page."});
-        }
         const users = await User.find()
         return res.status(200).json(users)
       }catch(error){
