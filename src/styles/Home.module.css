@@ -2,6 +2,17 @@
   padding: 0 2rem;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.pageContainer{
+  margin: auto;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;

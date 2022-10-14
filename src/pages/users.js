@@ -1,18 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import {Button, Card, CardContent, CardHeader, Confirm,Grid} from 'semantic-ui-react'
+import {Button, Card, CardContent, CardHeader, Confirm,Grid,Container} from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
 import { Router, useRouter } from 'next/router'
 import {deleteUser} from 'controllers/userController'
 import { useSession } from 'next-auth/react'
 
-export default function Home({users}) {
+export default function Users({users}) {
   const { status,data } = useSession()
   const router = useRouter()
   const [isOpen,setIsOpen] = useState(false)
   const [selectedUser,setSelectedUser] = useState(null)
 
+  console.log(users)
   
   useEffect(()=>{
     if(status==='unauthenticated') router.replace('/')
@@ -48,15 +49,7 @@ export default function Home({users}) {
     } else{
       return (
       <div className={styles.container}>
-        <Head>
-          <title>UsCrud-Home</title>
-          <meta name="description" content="Developed by Erik Murminacho" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <h1 className={styles.title}>
-          USERS CRUD <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <container style={{padding:40}}>
+        <Container style={{padding:40}}>
           <Card.Group itemsPerRow={4}>
             {
               users.map((user)=>(
@@ -84,13 +77,10 @@ export default function Home({users}) {
           </Card.Group>
           <Confirm open = {isOpen} onConfirm={handleDelete} onCancel={close}/>
 
-        </container>
-        
+        </Container>   
         <p className={styles.description} style={{fontStyle:'italic'}}>
-          Develop by Erik Murminacho{' '}
+          Developed by Erik Murminacho{' '}
         </p>
-  
-          
       </div>
     )
   }

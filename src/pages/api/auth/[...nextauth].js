@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import {findUserByCredentials} from 'controllers/userController'
+import SignIn from "../../auth/singin";
 
 export const authOptions = {
   session: {
@@ -25,7 +26,7 @@ export const authOptions = {
         console.log(user)
         console.log('Login: '+ user.email)
         if (!user.email) {
-          throw new Error('Credenciales no válidas')
+          toast('Credenciales no válidas',{type:'error'})
           // Any object returned will be saved in `user` property of the JWT
           
         } else {
@@ -36,7 +37,13 @@ export const authOptions = {
         }
       }
     })
-  ],
+  ],pages: {
+    //signIn: 'auth/singin',
+    //signOut: '/auth/signout',
+    error: '/auth/error', // Error code passed in query string as ?error=
+    //verifyRequest: '/auth/verify-request', // (used for check email message)
+    //newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+  }
   
 
 }
