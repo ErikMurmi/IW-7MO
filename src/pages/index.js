@@ -10,6 +10,8 @@ export default function Index(){
     if (session) {
         //console.log('usuario '+ session.user.email)
         return (<>
+        <header><title>Home</title></header>
+        
           <h1 className={styles.title}>
             Bienvenido <a>{session.user.email}</a>
           </h1>
@@ -20,14 +22,10 @@ export default function Index(){
         )
     }else{
       return (
-        <div style={{backgroundColor:"#141414", height:'100vh'}}>
-          <h1 className={styles.title} style={{color:"white"}}>
-            ERIKM CRUD <a href="https://nextjs.org">Next.js!</a>
+        <div style={{ height:'100vh'}}>
+          <h1 className={styles.title} style={{color:"green"}}>
+            PLAYC ADMIN
           </h1>
-          Not signed in <br />
-          <img height={'90%'} style={{marginLeft:400}} className="center"
-          src="https://rare-gallery.com/thumbs/4503059-black-background-minimalism-sunset-portrait-display.png">
-          </img>
         </div>
       )
     }

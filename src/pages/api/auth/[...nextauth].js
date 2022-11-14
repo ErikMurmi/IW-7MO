@@ -26,11 +26,15 @@ export const authOptions = {
         console.log(user)
         console.log('Login: '+ user.email)
         if (!user.email) {
-          toast('Credenciales no válidas',{type:'error'})
+          console.log('Credenciales no válidas')
           // Any object returned will be saved in `user` property of the JWT
           
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
+          if(user.tipo!==1){
+            throw Error('No tienes los privilegios para acceder al sistema')
+            //return null
+          }
           console.log('test')
           return user
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter

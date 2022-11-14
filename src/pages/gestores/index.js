@@ -1,36 +1,32 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from 'styles/Home.module.css'
 import {Button, Card, CardContent, CardHeader, Confirm,Grid,Container} from 'semantic-ui-react'
 import { useEffect, useState } from 'react'
-import { Router, useRouter } from 'next/router'
-import {deleteUser} from 'controllers/userController'
+import { useRouter } from 'next/router'
+import { deleteGestor } from 'controllers/gestoresController'
 import { useSession } from 'next-auth/react'
 
-export default function Users({users}) {
+export default function Gestores({gestores}) {
   const { status,data } = useSession()
   const router = useRouter()
   const [isOpen,setIsOpen] = useState(false)
   const [selectedUser,setSelectedUser] = useState(null)
-
-  console.log(users)
   
   useEffect(()=>{
     if(status==='unauthenticated') router.replace('/')
   },[status])
 
   if (status==='authenticated'){
-    console.log(users)
+    console.log(gestores)
     const open = () => setIsOpen(true)
     const close = () => setIsOpen(false)
 
     const handleDelete = () =>{
       close()
-      deleteUser(selectedUser)
+      deleteGestor(selectedUser)
       router.push('/')
     }
 
-    if(users.length ===0){
+    if(gestores.length ===0){
     return(
       <Grid centered verticalAlign='middle' columns ='1'style={{heigth: '50vh'}}>
         <Grid.Column textAlign='center'>
@@ -40,7 +36,7 @@ export default function Users({users}) {
           </img>
         </Grid.Column>
         <Button color='olive'
-        onClick={()=>router.push("/users/new")}
+        onClick={()=>router.push("/gestores/newGestor")}
         >Añadir Usuario</Button>
       </Grid>
     )
@@ -51,22 +47,22 @@ export default function Users({users}) {
       <div className={styles.container}>
         <Container style={{padding:30}}>
         <h1>Gestores Registrados</h1>
-          <button onClick={()=>router.push("/users/newGestor")}
+          <button onClick={()=>router.push("/gestores/newGestor")}
                 style={{backgroundColor:"#b8bb26",marginBottom:"20px"}}>
-                    Registrar usuario
+                    Registrar gestor
           </button>
           <Card.Group itemsPerRow={4}>
             {
-              users.map((user)=>(
+              gestores.map((user)=>(
                 <Card key={user._id}>
                   <CardContent>
                     <CardHeader>
-                      {user.nombre +' '+ user.apellido}
+                      {user.nombres +' '+ user.apellidos}
                     </CardHeader>
                     <Card.Content extra>
                       <Button color='blue'
                       onClick={()=>{
-                        router.push(`/users/${user._id}/edit`)
+                        router.push(`/gestores/${user._id}/edit`)
                       }}>Editar</Button>
                       <Button color='red'
                       onClick={()=>{
@@ -93,12 +89,12 @@ export default function Users({users}) {
   }
 }
 export const getServerSideProps = async (context) =>{
-  const res = await fetch("http://localhost:3000/api/users");
+  const res = await fetch("http://localhost:3000/api/gestores");
   const data = await res.json();
 
   return{
     props:{
-      users:data,
+      gestores:data,
     },
   }
 }

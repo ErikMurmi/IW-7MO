@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
     <SessionProvider>
       <Layout>
         <header>
-        <title>UsCrud </title>
+        <title>Playc-Home </title>
             <meta name="description" content="Developed by Erik Murminacho" />
             <link rel="icon" href="/favicon.ico" />
         </header>
