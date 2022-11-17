@@ -23,7 +23,7 @@ export default function Gestores({gestores}) {
     const handleDelete = () =>{
       close()
       deleteGestor(selectedUser)
-      router.push('/')
+      router.reload()
     }
 
     if(gestores.length ===0){

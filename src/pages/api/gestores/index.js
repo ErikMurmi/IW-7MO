@@ -24,7 +24,6 @@ export default async function handler(req,res){
       }
     case "POST":
       try{
-        console.log(body)
         const newGestor = new Gestor(body)
         const savedGestor = await newGestor.save()
         return res.status(201).json(savedGestor)

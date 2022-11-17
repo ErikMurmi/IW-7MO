@@ -1,8 +1,8 @@
 import { Schema,model,models } from "mongoose";
  
 const gestorSchema = new Schema({
-    nombres:String,
-    apellidos:String,
+    nombres:{type:String,required: [true, 'Los nombres son requeridos']},
+    apellidos:{type:String,required: [true, 'Los apellidos son requeridos']},
     cedula:{type:String,validate: {
         validator: function(validarCedula) {
             let aux = 0, par = 0, impar = 0, verifi;

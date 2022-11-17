@@ -11,13 +11,14 @@ export const deleteGestor = async(selectedUser)=>{
 
 export const registerGestor = async (newGestor)=>{
     try{
-        await fetch('http://localhost:3000/api/gestores',{
+        const res = await fetch('http://localhost:3000/api/gestores',{
             method:'POST',
             headers:{
                 "Content-Type":"application/json"
             },
             body : JSON.stringify(newGestor)
         })
+        return res
     }catch(error){
         return {error:1,msg:error}
     }
