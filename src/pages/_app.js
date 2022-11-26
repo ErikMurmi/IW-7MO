@@ -3,10 +3,11 @@ import 'semantic-ui-css/semantic.min.css'
 import { Layout } from 'components/Layout'
 import { SessionProvider } from "next-auth/react"
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps },
+ }) {
 
   return (
-    <SessionProvider>
+    <SessionProvider session={session}>
       <Layout>
         <header>
         <title>Playc-Home </title>

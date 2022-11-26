@@ -6,7 +6,7 @@ import { deleteGestor } from 'controllers/gestoresController'
 import { useSession } from 'next-auth/react'
 
 export default function Gestores({gestores}) {
-  const { status,data } = useSession()
+  const { data:session,status } = useSession()
   const router = useRouter()
   const [isOpen,setIsOpen] = useState(false)
   const [selectedUser,setSelectedUser] = useState(null)
@@ -16,7 +16,7 @@ export default function Gestores({gestores}) {
   },[status])
 
   if (status==='authenticated'){
-    console.log(gestores)
+    console.log(session)
     const open = () => setIsOpen(true)
     const close = () => setIsOpen(false)
 
@@ -85,7 +85,7 @@ export default function Gestores({gestores}) {
       </div>
     )
   }
-  return <div>Cargando</div>
+  return <div>Loading</div>
   }
 }
 export const getServerSideProps = async (context) =>{
